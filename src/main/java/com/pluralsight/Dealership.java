@@ -118,7 +118,7 @@ public class Dealership {
             if (vehicle.getOdometer() >= min && vehicle.getOdometer() <= max) {
 
                 // add matching vehicle to the list
-                filteredVehicles.add(Vehicle);
+                filteredVehicles.add(vehicle);
             }
         }
         // return to filtered vehicles
