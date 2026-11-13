@@ -1,4 +1,5 @@
 package com.pluralsight;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class UserInterface {
@@ -53,7 +54,27 @@ public class UserInterface {
         // check which menu option the user selected
         switch (choice) {
             case 1:
-                System.out.println("Search vehicles by price");
+                // ask the user for min and max price
+                System.out.print("Enter the minimum price: ");
+                int minPrice = scanner.nextInt();
+                System.out.print("Enter the maximum price: ");
+                int maxPrice = scanner.nextInt();
+             ArrayList<Vehicle> priceResults = dealership.getVehiclesByPrice(minPrice, maxPrice);
+
+             // check whether any matches match the search
+                if (priceResults.isEmpty()) {
+                    System.out.println("No vehicles found in that price range. ");
+                } else {
+                    //display each matching vehicle
+                    for (Vehicle vehicle : priceResults) {
+                        System.out.println("------------------");
+                        System.out.println("VIN: " + vehicle.getVin());
+                        System.out.println("Year: " + vehicle.getYear());
+                        System.out.println("Make: " + vehicle.getMake());
+                        System.out.println("Model " + vehicle.getModel());
+                        System.out.println("Price: $" + vehicle.getPrice());
+                    }
+                }
                 break;
             case 2:
                 System.out.println("Search vehicles by make and model");
@@ -68,7 +89,24 @@ public class UserInterface {
                 System.out.println("Search vehicles by type");
                 break;
             case 6:
-                System.out.println("View all vehicles");
+                ArrayList<Vehicle> vehicles = dealership.getAllVehicles();
+                // whck whether the dealership has any vehicles
+                if (vehicles.isEmpty()) {
+                    System.out.println("There are no vehicles in inventory. ");
+                } else {
+                    // display each vehicle in the inventory
+                    for (Vehicle vehicle : vehicles) {
+                        System.out.println("------------------------");
+                        System.out.println("VIN: " + vehicle.getVin());
+                        System.out.println("Year: " + vehicle.getYear());
+                        System.out.println("Make: " + vehicle.getMake());
+                        System.out.println("Model: " + vehicle.getModel());
+                        System.out.println("Type: " + vehicle.getVehicleType());
+                        System.out.println("Color: " + vehicle.getColor());
+                        System.out.println("Odometer: " + vehicle.getOdometer());
+                        System.out.println("Price $" + vehicle.getPrice());
+                    }
+                }
                 break;
             case 7:
                 System.out.println("Add a vehicle");
@@ -82,6 +120,21 @@ public class UserInterface {
 
 
         }
+    }
+    // run the menu until user chooses to quit
+    public void display() {
+
+        // store the usrs menu choid
+        int choice;
+
+        //keep showing the menu until the user enters 9
+        do {
+            // display the menu
+            displayMenu();
+            //get users selection
+            choice = promptChoice();
+
+        } while (choice != 9);
     }
     }
 
