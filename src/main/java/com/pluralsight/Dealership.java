@@ -71,16 +71,22 @@ public class Dealership {
     }
 
     public ArrayList<Vehicle> getVehiclesByMakeModel(String make, String model) {
-        // loop over inventory and return a list of vehicles that match the price range
 
-        // start a new list for filter cars
+        // create an empty list for matching vehicles
+        ArrayList<Vehicle> filteredVehicles = new ArrayList<>();
 
-        // loop over inventory and add matching cards to filter list
+        // Look at every vehicle in the inventory
+        for (Vehicle vehicle : inventory) {
+            // check whether both make and model match
+            if (vehicle.getMake().equalsIgnoreCase(make) &&
+                    vehicle.getModel().equalsIgnoreCase(model)) {
 
-        // return the list
-        return null;
-
-
+                // add matching vehicle to the list
+                filteredVehicles.add(vehicle);
+            }
+        }
+        // return the matching vehicles
+        return filteredVehicles;
     }
 
     public ArrayList<Vehicle> getVehiclesByYear(int min, int max) {
