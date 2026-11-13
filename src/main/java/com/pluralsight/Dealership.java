@@ -126,14 +126,21 @@ public class Dealership {
     }
 
     public ArrayList<Vehicle> getVehiclesbyType(String type) {
-        // loop over inventory and return a list of vehicles that match the price range
+        // create an array list for matching vehicles
+        ArrayList<Vehicle> filteredVehicles = new ArrayList<>();
 
-        // start a new list for filter cars
+        // loop through every vehicle in inventory
+        for (Vehicle vehicle : inventory) {
 
-        // loop over inventory and add matching cards to filter list
+            // check if the vehicle type matches
+            if (vehicle.getVehicleType().equalsIgnoreCase(type)) {
 
-        // return the list
-        return null;
+                //add matching vehicle to list
+                filteredVehicles.add(vehicle);
+            }
+        }
+        // return the matching vehicles
+        return filteredVehicles;
     }
 
 
