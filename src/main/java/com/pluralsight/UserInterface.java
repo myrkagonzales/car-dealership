@@ -47,6 +47,42 @@ public class UserInterface {
         return choice;
 
         }
+        // Processes users choice
+    public void userChoice(int choice) {
+
+        // check which menu option the user selected
+        switch (choice) {
+            case 1:
+                System.out.println("Search vehicles by price");
+                break;
+            case 2:
+                System.out.println("Search vehicles by make and model");
+                break;
+            case 3:
+                System.out.println("Search vehicles by year");
+                break;
+            case 4:
+                System.out.println("Search vehicles by mileage");
+                break;
+            case 5:
+                System.out.println("Search vehicles by type");
+                break;
+            case 6:
+                System.out.println("View all vehicles");
+                break;
+            case 7:
+                System.out.println("Add a vehicle");
+                break;
+            case 8:
+                System.out.println("Remove a vehicle");
+                break;
+            case 9:
+                System.out.println("Thank you for visiting!");
+                break;
+
+
+        }
+    }
     }
 
 
