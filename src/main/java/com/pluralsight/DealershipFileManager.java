@@ -85,6 +85,26 @@ public class DealershipFileManager {
                     + dealership.getAddress() + "|"
                     + dealership.getPhone());
             writer.newLine();
+            for (Vehicle vehicle : dealership.getAllVehicles()) {
+                //vin
+                writer.write(String.valueOf(vehicle.getVin()) + "|");
+                // year
+                writer.write(String.valueOf(vehicle.getYear()) + "|");
+                // make
+                writer.write(vehicle.getMake() + "|");
+                // model
+                writer.write(vehicle.getModel() + "|");
+                // vehicle type
+                writer.write(vehicle.getVehicleType() + "|");
+                //color
+                writer.write(vehicle.getColor());
+                // odometer
+                writer.write(String.valueOf(vehicle.getOdometer()) + "|");
+                // price
+                writer.write(vehicle.getPrice().toString());
+                // move to the next line for the next vehicle
+                writer.newLine();
+            }
 
         } catch (Exception e) {
             e.printStackTrace();
