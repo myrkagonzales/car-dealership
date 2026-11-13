@@ -108,15 +108,23 @@ public class Dealership {
 
     }
     public ArrayList<Vehicle> getVehiclesByMileage(int min, int max) {
-        // loop over inventory and return a list of vehicles that match the price range
+        // create an empty list for matching vehicles
+        ArrayList<Vehicle> filteredVehicles = new ArrayList<>();
 
-        // start a new list for filter cars
+        // loop through each vehicle in inventory
+        for (Vehicle vehicle : inventory) {
 
-        // loop over inventory and add matching cards to filter list
+            // check if the mileage is withing the range
+            if (vehicle.getOdometer() >= min && vehicle.getOdometer() <= max) {
 
-        // return the list
-        return null;
+                // add matching vehicle to the list
+                filteredVehicles.add(Vehicle);
+            }
+        }
+        // return to filtered vehicles
+        return filteredVehicles;
     }
+
     public ArrayList<Vehicle> getVehiclesbyType(String type) {
         // loop over inventory and return a list of vehicles that match the price range
 
