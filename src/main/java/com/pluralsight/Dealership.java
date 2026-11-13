@@ -1,5 +1,6 @@
 package com.pluralsight;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 
 public class Dealership {
@@ -49,14 +50,22 @@ public class Dealership {
 
     // get all the vehicles
     public ArrayList<Vehicle> getVehiclesByPrice(int min, int max) {
-        // loop over inventory and return a list of vehicles that match the price range
 
         // start a new list for filter cars
+        ArrayList<Vehicle> filteredVehicles = new ArrayList<>();
+        // looking at every vehicle in the inventory
+        for (Vehicle vehicle : inventory) {
+            // check whether the vehicles price is within the range
+            if(vehicle.getPrice().compareTo(new BigDecimal(min)) >= 0 &&
+            vehicle.getPrice().compareTo(new BigDecimal(max)) <=0) {
 
-        // loop over inventory and add matching cards to filter list
+                // add the matching vehicle to new list
+                filteredVehicles.add(vehicle);
+            }
+        }
 
         // return the list
-        return null;
+        return filteredVehicles;
 
 
     }

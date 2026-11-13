@@ -27,6 +27,10 @@ public class DealershipFileManager {
 
             if (dealershipInfo != null) {
                 String[] dealershipData = dealershipInfo.split("\\|"); // separating the values of the file
+                // checks for first line to have name, address and phone #
+                if(dealershipData.length !=3) {
+                    throw new IllegalArgumentException("Invalid dealership information");
+                }
 
                 // create a dealership object
                 dealership = new Dealership(
@@ -37,8 +41,14 @@ public class DealershipFileManager {
                 String vehicleInfo;
                 // converting this line into a vehicle
                 while ((vehicleInfo = inventoryReader.readLine()) != null) {
+
                     // splitting the vehicle information
                     String[] vehicleData = vehicleInfo.split("\\|");
+
+                    // if statement checks each line has all 8 fields.
+                    if(vehicleData.length != 8) {
+                        continue; // if a line is missing info, continue, skips line and onto the next one.
+                    }
                     // converting values into the correct data type
                     int vin = Integer.parseInt(vehicleData[0]);
                     int year = Integer.parseInt(vehicleData[1]);
@@ -81,7 +91,7 @@ public class DealershipFileManager {
         // setting up the file writer to open and write csv efficiently
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(csvFile))) {
             // write dealership information first
-            writer.write(dealership.getAllVehicles() + "|"
+            writer.write(dealership.getName() + "|"
                     + dealership.getAddress() + "|"
                     + dealership.getPhone());
             writer.newLine();
@@ -97,7 +107,7 @@ public class DealershipFileManager {
                 // vehicle type
                 writer.write(vehicle.getVehicleType() + "|");
                 //color
-                writer.write(vehicle.getColor());
+                writer.write(vehicle.getColor() + "|");
                 // odometer
                 writer.write(String.valueOf(vehicle.getOdometer()) + "|");
                 // price
