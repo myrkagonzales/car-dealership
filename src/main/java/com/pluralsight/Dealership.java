@@ -43,9 +43,10 @@ public class Dealership {
     public ArrayList<Vehicle> getAllVehicles() {
         return this.inventory;
     }
-
+    // remove vehicles from inventory list
     public void removeVehicle(Vehicle vehicle) {
-        // take the vehicle passed in out of the inventory list
+        this.inventory.remove(vehicle);
+
     }
 
     // get all the vehicles
