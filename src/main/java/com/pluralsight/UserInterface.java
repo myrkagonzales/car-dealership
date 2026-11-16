@@ -104,7 +104,26 @@ public class UserInterface {
                 }
                 break;
             case 3:
-                System.out.println("Search vehicles by year");
+                System.out.print("Enter the minimum year: ");
+                int minYear = scanner.nextInt();
+                // ask the user for the ending year
+                System.out.print("Enter the maximum year: ");
+                int maxYear = scanner.nextInt();
+                ArrayList<Vehicle> yearResults = dealership.getVehiclesByYear(minYear, maxYear);
+
+                if(yearResults.isEmpty()) {
+                    System.out.println("No vehicles found that year range. ");
+                } else {
+                    for (Vehicle vehicle : yearResults) {
+
+                System.out.println("------------------");
+                System.out.println("VIN: " + vehicle.getVin());
+                System.out.println("Year: " + vehicle.getYear());
+                System.out.println("Make: " + vehicle.getMake());
+                System.out.println("Model " + vehicle.getModel());
+                System.out.println("Price: $" + vehicle.getPrice());
+        }
+    }
                 break;
             case 4:
                 System.out.println("Search vehicles by mileage");
