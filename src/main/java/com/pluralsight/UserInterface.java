@@ -59,9 +59,9 @@ public class UserInterface {
                 int minPrice = scanner.nextInt();
                 System.out.print("Enter the maximum price: ");
                 int maxPrice = scanner.nextInt();
-             ArrayList<Vehicle> priceResults = dealership.getVehiclesByPrice(minPrice, maxPrice);
+                ArrayList<Vehicle> priceResults = dealership.getVehiclesByPrice(minPrice, maxPrice);
 
-             // check whether any matches match the search
+                // check whether any matches match the search
                 if (priceResults.isEmpty()) {
                     System.out.println("No vehicles found in that price range. ");
                 } else {
@@ -76,8 +76,32 @@ public class UserInterface {
                     }
                 }
                 break;
+            // ask for vehicle model
             case 2:
-                System.out.println("Search vehicles by make and model");
+
+                System.out.print("Enter vehicle model: ");
+                String model = scanner.next();
+
+                System.out.print("Enter vehicle model: ");
+                String make = scanner.next();
+
+                // search the dealership inventory
+                ArrayList<Vehicle> makeModelResults = dealership.getVehiclesByMakeModel(make, model);
+
+                // check whether any searches matched
+                if (makeModelResults.isEmpty()) {
+                    System.out.println("No vehicles found matching that make and model. ");
+                } else {
+                    for (Vehicle vehicle : makeModelResults) {
+                        System.out.println("------------------");
+                        System.out.println("VIN: " + vehicle.getVin());
+                        System.out.println("Year: " + vehicle.getYear());
+                        System.out.println("Make: " + vehicle.getMake());
+                        System.out.println("Model " + vehicle.getModel());
+                        System.out.println("Price: $" + vehicle.getPrice());
+
+                    }
+                }
                 break;
             case 3:
                 System.out.println("Search vehicles by year");
