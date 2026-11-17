@@ -217,7 +217,35 @@ public class UserInterface {
                 System.out.println("Vehicle successfully added!");
                 break;
             case 8:
-                System.out.println("Remove a vehicle");
+               // ask the user for the vin of the vehicle they want to remove
+                System.out.print("Enter the VIN of the vehicle to remove: ");
+                int vinRemoval = scanner.nextInt();
+
+                // create a variable to hold the vehicle we want to remove
+                Vehicle vehicleRemoval = null;
+
+                // loop through the inventory
+                for (Vehicle currentVehicle : dealership.getAllVehicles()) {
+                    //check whether this vehicles vin matches the entered VIN
+                    if (currentVehicle.getVin() == vinRemoval) {
+                        //store the matching vehicle
+                        vehicleRemoval = currentVehicle;
+                        // stop searching once found
+                        break;
+                    }
+                }
+                // check if vehicle was found
+                if (vehicleRemoval != null) {
+                    // remove the vehicle from inventory
+                    dealership.removeVehicle(vehicleRemoval);
+                    //save the updated inventory to csv
+                    fileManager.saveDealership(dealership);
+                    // confirm the removal
+                    System.out.println("Vehicle successfully removed!");
+                } else {
+                    // let the user know if the vin was not found
+                    System.out.println("Vehicle not found.");
+                }
                 break;
             case 9:
                 System.out.println("Thank you for visiting!");
