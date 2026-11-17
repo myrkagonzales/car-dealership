@@ -22,7 +22,7 @@ public class UserInterface {
         this.scanner = new Scanner(System.in);
     }
 
-    // dispalying dealership Menu
+    // displaying dealership Menu
     public void displayMenu() {
 
         // print the menu header
@@ -43,17 +43,18 @@ public class UserInterface {
         System.out.print("Enter your choice: ");
     }
 
-        // gets the menu choice entered by the user
-        public int promptChoice() {
+    // gets the menu choice entered by the user
+    public int promptChoice() {
 
-            // read the number entered by the user
+        // read the number entered by the user
         int choice = scanner.nextInt();
 
         // return users choice
         return choice;
 
-        }
-        // Processes users choice
+    }
+
+    // Processes users choice
     public void userChoice(int choice) {
 
         // check which menu option the user selected
@@ -170,6 +171,8 @@ public class UserInterface {
                 break;
             case 6:
                 ArrayList<Vehicle> vehicles = dealership.getAllVehicles();
+
+
                 //  check whether the dealership has any vehicles
                 if (vehicles.isEmpty()) {
                     System.out.println("There are no vehicles in inventory. ");
@@ -208,7 +211,7 @@ public class UserInterface {
                 System.out.print("Enter price: ");
                 BigDecimal price = scanner.nextBigDecimal();
 
-                Vehicle newVehicle = new Vehicle( vin, year, vehMake, vehModel, vehicleType, color, odometer,price);
+                Vehicle newVehicle = new Vehicle(vin, year, vehMake, vehModel, vehicleType, color, odometer, price);
                 // add new vehicle to inventory
                 dealership.addVehicle(newVehicle);
                 // save the updated dealership inventory to csv file
@@ -217,7 +220,7 @@ public class UserInterface {
                 System.out.println("Vehicle successfully added!");
                 break;
             case 8:
-               // ask the user for the vin of the vehicle they want to remove
+                // ask the user for the vin of the vehicle they want to remove
                 System.out.print("Enter the VIN of the vehicle to remove: ");
                 int vinRemoval = scanner.nextInt();
 
@@ -254,10 +257,11 @@ public class UserInterface {
 
         }
     }
+
     // run the menu until user chooses to quit
     public void display() {
 
-        // store the usrs menu choid
+        // store the users menu choice
         int choice;
 
         //keep showing the menu until the user enters 9
@@ -267,8 +271,9 @@ public class UserInterface {
             //get users selection
             choice = promptChoice();
 
+            userChoice(choice);
         } while (choice != 9);
     }
-    }
+}
 
 
