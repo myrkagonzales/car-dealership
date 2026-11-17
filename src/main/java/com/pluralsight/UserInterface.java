@@ -1,5 +1,6 @@
 package com.pluralsight;
-import java.lang.reflect.Array;
+
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -9,6 +10,9 @@ public class UserInterface {
 
     // reads information entered by the user
     private Scanner scanner;
+
+    // handles reading and saving inventory
+    private DealershipFileManager fileManager = new DealershipFileManager();
 
     // constructor
     public UserInterface(Dealership dealership) {
@@ -112,26 +116,26 @@ public class UserInterface {
                 int maxYear = scanner.nextInt();
                 ArrayList<Vehicle> yearResults = dealership.getVehiclesByYear(minYear, maxYear);
 
-                if(yearResults.isEmpty()) {
+                if (yearResults.isEmpty()) {
                     System.out.println("No vehicles found within that year range. ");
                 } else {
                     for (Vehicle vehicle : yearResults) {
 
-                System.out.println("------------------");
-                System.out.println("VIN: " + vehicle.getVin());
-                System.out.println("Year: " + vehicle.getYear());
-                System.out.println("Make: " + vehicle.getMake());
-                System.out.println("Model " + vehicle.getModel());
-                System.out.println("Price: $" + vehicle.getPrice());
-        }
-    }
+                        System.out.println("------------------");
+                        System.out.println("VIN: " + vehicle.getVin());
+                        System.out.println("Year: " + vehicle.getYear());
+                        System.out.println("Make: " + vehicle.getMake());
+                        System.out.println("Model " + vehicle.getModel());
+                        System.out.println("Price: $" + vehicle.getPrice());
+                    }
+                }
                 break;
             case 4:
                 System.out.print("Enter the minimum mileage: ");
                 int minmileage = scanner.nextInt();
                 System.out.print("Enter the maximum mileage: ");
-                int maxmileage  = scanner.nextInt();
-                ArrayList<Vehicle>  mileageResults = dealership.getVehiclesByMileage(minmileage, maxmileage);
+                int maxmileage = scanner.nextInt();
+                ArrayList<Vehicle> mileageResults = dealership.getVehiclesByMileage(minmileage, maxmileage);
 
                 if (mileageResults.isEmpty()) {
                     System.out.println("No vehicles found within mileage range");
@@ -184,8 +188,33 @@ public class UserInterface {
                     }
                 }
                 break;
+
             case 7:
-                System.out.println("Add a vehicle");
+                // ask the user to enter vehicle information
+                System.out.print("Enter VIN: ");
+                int vin = scanner.nextInt();
+                System.out.print("Enter year: ");
+                int year = scanner.nextInt();
+                System.out.print("Enter make: ");
+                String vehMake = scanner.next();
+                System.out.print("Enter model: ");
+                String vehModel = scanner.next();
+                System.out.print("Enter vehicle type: ");
+                String vehicleType = scanner.next();
+                System.out.print("Enter color: ");
+                String color = scanner.next();
+                System.out.print("Enter the odometer reading: ");
+                int odometer = scanner.nextInt();
+                System.out.print("Enter price: ");
+                BigDecimal price = scanner.nextBigDecimal();
+
+                Vehicle newVehicle = new Vehicle( vin, year, vehMake, vehModel, vehicleType, color, odometer,price);
+                // add new vehicle to inventory
+                dealership.addVehicle(newVehicle);
+                // save the updated dealership inventory to csv file
+                fileManager.saveDealership(dealership);
+                // let the user know the vehicle was added
+                System.out.println("Vehicle successfully added!");
                 break;
             case 8:
                 System.out.println("Remove a vehicle");
