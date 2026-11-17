@@ -1,4 +1,5 @@
 package com.pluralsight;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -112,7 +113,7 @@ public class UserInterface {
                 ArrayList<Vehicle> yearResults = dealership.getVehiclesByYear(minYear, maxYear);
 
                 if(yearResults.isEmpty()) {
-                    System.out.println("No vehicles found that year range. ");
+                    System.out.println("No vehicles found within that year range. ");
                 } else {
                     for (Vehicle vehicle : yearResults) {
 
@@ -126,14 +127,46 @@ public class UserInterface {
     }
                 break;
             case 4:
-                System.out.println("Search vehicles by mileage");
+                System.out.print("Enter the minimum mileage: ");
+                int minmileage = scanner.nextInt();
+                System.out.print("Enter the maximum mileage: ");
+                int maxmileage  = scanner.nextInt();
+                ArrayList<Vehicle>  mileageResults = dealership.getVehiclesByMileage(minmileage, maxmileage);
+
+                if (mileageResults.isEmpty()) {
+                    System.out.println("No vehicles found within mileage range");
+                } else {
+                    for (Vehicle vehicle : mileageResults) {
+
+                        System.out.println("------------------------");
+                        System.out.println("VIN: " + vehicle.getVin());
+                        System.out.println("Year: " + vehicle.getYear());
+                        System.out.println("Make: " + vehicle.getMake());
+                        System.out.println("Model: " + vehicle.getModel());
+                        System.out.println("Type: " + vehicle.getVehicleType());
+                        System.out.println("Color: " + vehicle.getColor());
+                        System.out.println("Odometer: " + vehicle.getOdometer());
+                        System.out.println("Price $" + vehicle.getPrice());
+                    }
+                }
                 break;
             case 5:
-                System.out.println("Search vehicles by type");
+                System.out.print("Enter the vehicle type (e.g. Sudan, Suv, Truck, etc...");
+                String type = scanner.next();
+                ArrayList<Vehicle> typeResults = dealership.getVehiclesbyType(type);
+
+                if (typeResults.isEmpty()) {
+                    System.out.println("No vehicles found within search criteria.");
+                } else {
+                    for (Vehicle vehicle : typeResults) {
+
+                    }
+                }
+
                 break;
             case 6:
                 ArrayList<Vehicle> vehicles = dealership.getAllVehicles();
-                // whck whether the dealership has any vehicles
+                //  check whether the dealership has any vehicles
                 if (vehicles.isEmpty()) {
                     System.out.println("There are no vehicles in inventory. ");
                 } else {
